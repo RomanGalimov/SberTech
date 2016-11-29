@@ -8,6 +8,9 @@ import java.util.ArrayList;
 public class ExtraCream extends iceCream {
 
     private String drink;
+    public static final String drinkType1="Морсик";
+    public static final String drinkType2="Компотик";
+    public static final String drinkType3="Квас";
 
     public String getDrink() {
         return drink;
@@ -34,20 +37,20 @@ public class ExtraCream extends iceCream {
 
 
     public int price() {
-        int priceValue = 0;
-        if (super.getCupCream().equals("Рожок")) {
-            priceValue += 100;
-        } else if (super.getCupCream().equals("Стаканчик")) {
-            priceValue += 150;
-        } else {
-            priceValue = 0;
-        }
+        int priceValue = super.price();
+//        if (super.getCupCream().equals("Рожок")) {
+//            priceValue += 100;
+//        } else if (super.getCupCream().equals("Стаканчик")) {
+//            priceValue += 150;
+//        } else {
+//            priceValue = 0;
+//        }
 
-        if (this.drink.equals("Морсик")) {
+        if (this.drink.equals(drinkType1)) {
             priceValue += 40;
-        } else if (this.drink.equals("Компотик")) {
+        } else if (this.drink.equals(drinkType2)) {
             priceValue += 35;
-        } else if (this.drink.equals("Квас")) {
+        } else if (this.drink.equals(drinkType3)) {
             priceValue += 50;
         } else {
             priceValue += 0;

@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by dmitr on 10.11.2016.
@@ -11,9 +12,16 @@ public class iceCream {
     private String cupCream;
     private ArrayList<String> toppingList = new ArrayList();
 
+    public static final String cupCreamtype1="Рожок";
+    public static final String cupCreamtype2="Стаканчик";
+    public static final String typeCream1="Сливочное";
+    public static final String typeCream2="Шоколадное";
+    public static final String typeCream3="Клубничное";
+
     public ArrayList<String> getToppingList() {
         return toppingList;
     }
+    //public static HashMap<String, Integer> priceList = new HashMap<String,Integer>();
 
     public int getPrice() {
         return price;
@@ -45,26 +53,27 @@ public class iceCream {
 
 
     public iceCream() {
-        this.cupCream = "Рожок";
+        this.cupCream = cupCreamtype1;
         this.price = 0;
-        this.typeCream = "Сливочное";
+        this.typeCream = typeCream1;
     }
 
     int price() {
         int priceValue = 0;
-        if (this.cupCream.equals("Рожок")) {
+        //priceList.put(cupCreamtype1,100);
+        if (this.cupCream.equals(cupCreamtype1)) {
             priceValue += 100;
-        } else if (this.cupCream.equals("Стаканчик")) {
+        } else if (this.cupCream.equals(cupCreamtype2)) {
             priceValue += 150;
         } else priceValue = 0;
         for (int i = 0; i < this.toppingList.size(); i++) {
-            if (this.toppingList.get(i).toString().equals("Орешки")) {
+            if (this.toppingList.get(i).toString().equals(ToppingSelected.toppingType1)) {
                 priceValue += 30;
-            } else if (this.toppingList.get(i).equals("Шоколад")) {
+            } else if (this.toppingList.get(i).equals(ToppingSelected.toppingType2)) {
                 priceValue += 20;
-            } else if (this.toppingList.get(i).equals("Конфетки")) {
+            } else if (this.toppingList.get(i).equals(ToppingSelected.toppingType3)) {
                 priceValue += 15;
-            } else if (this.toppingList.get(i).equals("Варенье")) {
+            } else if (this.toppingList.get(i).equals(ToppingSelected.toppingType4)) {
                 priceValue += 10;
             } else priceValue += 0;
 
@@ -78,7 +87,6 @@ public class iceCream {
         System.out.println("Вы набрали на сумму: " + price + "\n Вкус: " + typeCream + "\n Посуда: " + cupCream + "\n Топпинги: ");
         for (int i = 0; i < toppingList.size(); i++) {
             System.out.println(toppingList.get(i));
-
         }
     }
 

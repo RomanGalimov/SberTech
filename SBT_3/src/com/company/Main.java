@@ -1,8 +1,7 @@
 package com.company;
-
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+
 
 public class Main {
 
@@ -18,13 +17,13 @@ public class Main {
         System.out.println("Добрый день! В какую емкость налить мороженное? \n 1)Стаканчик \n 2) Рожок ");
         int z = sc.nextInt();
         if (z == 1) {
-            iceCream.setCupCream("Стаканчик");
-            extraCream.setCupCream("Стаканчик");
-            surpriceCream.setCupCream("Стаканчик");
+            iceCream.setCupCream(iceCream.cupCreamtype2);
+            extraCream.setCupCream(iceCream.cupCreamtype2);
+            surpriceCream.setCupCream(iceCream.cupCreamtype2);
         } else {
-            iceCream.setCupCream("Рожок");
-            extraCream.setCupCream("Рожок");
-            surpriceCream.setCupCream("Рожок");
+            iceCream.setCupCream(iceCream.cupCreamtype1);
+            extraCream.setCupCream(iceCream.cupCreamtype1);
+            surpriceCream.setCupCream(iceCream.cupCreamtype1);
         }
 
         System.out.println("Какое мороженное Вы хотите? \n 1) Обычное \n 2) 'Сюрприз' \n 3) 'Экстра' ");
@@ -80,11 +79,11 @@ public class Main {
                 System.out.println("Выберите напиток: \n 1) Квас \n 2) Морсик \n 3) Компотик ");
                 k = sc.nextInt();
                 if (k == 1) {
-                    drink = "Квас";
+                    drink = ExtraCream.drinkType3;
                 } else if (k == 2) {
-                    drink = "Морсик";
+                    drink = ExtraCream.drinkType1;
                 } else {
-                    drink = "Компотик";
+                    drink = ExtraCream.drinkType2;
                 }
 
                 extraCream.setDrink(drink);
