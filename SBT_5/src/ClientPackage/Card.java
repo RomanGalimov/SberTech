@@ -64,6 +64,8 @@ public class Card {
         dos.writeLong(money);
         dos.writeBoolean(statusBlock);
         System.out.println("Запись в файл произведена!");
+        dos.flush();
+        dos.close();
     }
 
     public void getStream(String fileName) throws IOException {
@@ -73,6 +75,23 @@ public class Card {
         money=dis.readLong();
         statusBlock=dis.readBoolean();
         System.out.println("Значения для карты считаны из файла!");
+        dis.close();
+    }
+
+    public void setWriter(String nameFile) throws IOException {
+        BufferedWriter bw=new BufferedWriter(new FileWriter(nameFile));
+        bw.write(String.valueOf(numberCard));
+        bw.write(pin);
+        bw.write(String.valueOf(money));
+        bw.write(String.valueOf(statusBlock));
+        System.out.println("Записан в файл!");
+        bw.flush();
+        bw.close();
+    }
+    public void setReader(String nameFile) throws IOException {
+        BufferedReader br=new BufferedReader(new FileReader(nameFile));
+        System.out.println(br);
+        br.close();
     }
 
 
