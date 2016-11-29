@@ -5,7 +5,7 @@ import java.io.*;
 /**
  * Created by dmitr on 28.11.2016.
  */
-public class Card {
+public class Card implements Serializable{
 
 
     private long numberCard;

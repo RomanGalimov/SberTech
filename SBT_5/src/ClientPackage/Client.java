@@ -7,7 +7,7 @@ import java.io.*;
 /**
  * Created by dmitr on 28.11.2016.
  */
-public class Client {
+public class Client implements Serializable {
 
     private String FIO;
     private Card cardClient;
@@ -47,5 +47,18 @@ public class Client {
         DataInputStream dis=new DataInputStream(new FileInputStream(fileName));
         dis.readUTF();
         System.out.println("Фамилия считана из файла!");
+    }
+
+    public void setWriter(String nameFile) throws IOException {
+        BufferedWriter bw=new BufferedWriter(new FileWriter(nameFile));
+        bw.write(FIO);
+        System.out.println("Записан в файл!");
+        bw.flush();
+        bw.close();
+    }
+    public void setReader(String nameFile) throws IOException {
+        BufferedReader br=new BufferedReader(new FileReader(nameFile));
+        System.out.println(br);
+        br.close();
     }
 }
