@@ -34,6 +34,7 @@ public class BarbarianJulia implements Warrior, Cloneable {
     public void takeDamage(int Damage) {
         Health -= Damage;
         if (Health <= 0) {
+            System.out.println("Боец " + name + "\n погиб!!!");
             life = false;
         }
     }
@@ -61,8 +62,6 @@ public class BarbarianJulia implements Warrior, Cloneable {
     public Object clone() {
         try {
             BarbarianJulia e = (BarbarianJulia) super.clone();
-            e.name = e.getName();
-            e.squadName = e.getSquadName();
             return e;
         } catch (CloneNotSupportedException ex) {
             throw new InternalError();

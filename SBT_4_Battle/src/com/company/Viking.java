@@ -3,9 +3,9 @@ package com.company;
 /**
  * Created by dmitr on 22.11.2016.
  */
-public class Viking implements Warrior {
-    private int Damage = 10;
-    private int Health = 70;
+public class Viking implements Warrior, Cloneable {
+    private int damage = 10;
+    private int health = 70;
     private boolean life = true;
     private String squadName;
     private String name;
@@ -26,13 +26,14 @@ public class Viking implements Warrior {
 
     @Override
     public int attack() {
-        return Damage;
+        return damage;
     }
 
     @Override
     public void takeDamage(int Damage) {
-        Health -= Damage;
-        if (Health <= 0) {
+        health -= Damage;
+        if (health <= 0) {
+            System.out.println("Боец " + name + "\n погиб!!!");
             life = false;
         }
     }
@@ -43,8 +44,8 @@ public class Viking implements Warrior {
     }
 
     @Override
-    public void setSquadName(String Name) {
-        squadName = Name;
+    public void setSquadName(String name) {
+        squadName = name;
     }
 
     public String getSquadName() {
@@ -60,8 +61,6 @@ public class Viking implements Warrior {
     public Object clone() {
         try {
             Viking e = (Viking) super.clone();
-            e.name = e.getName();
-            e.squadName = e.getSquadName();
             return e;
         } catch (CloneNotSupportedException ex) {
             throw new InternalError();

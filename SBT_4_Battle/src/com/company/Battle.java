@@ -9,8 +9,8 @@ public class Battle {
         dateHelper dt = new dateHelper();
         ArrayList<Warrior> team1 = new ArrayList<>();
         ArrayList<Warrior> team2 = new ArrayList<>();
-        Squad SquadTeam1 = new Squad("Barbarian team");
-        Squad SquadTeam2 = new Squad("Julia team");
+        Squad squadTeam1 = new Squad("Barbarian team");
+        Squad squadTeam2 = new Squad("Julia team");
         BarbarianJulia bj = new BarbarianJulia("Варюля", "Barbarian team");
         BarbarianJulia bj1 = new BarbarianJulia("Варюльворвар", "Barbarian team");
         BarbarianJulia bj2 = new BarbarianJulia("Юльвар", "Julia team");
@@ -24,21 +24,21 @@ public class Battle {
         team2.add(vk1);
         team2.add(bj2);
         team2.add(bj3);
-        SquadTeam1.setMassWarior(team1);
-        SquadTeam2.setMassWarior(team2);
+        squadTeam1.setMassWarior(team1);
+        squadTeam2.setMassWarior(team2);
 
-        Battle.methodBattle(dt, SquadTeam1, SquadTeam2);
+        Battle.methodBattle(dt, squadTeam1, squadTeam2);
 
 
 //--------------------------------Для проверки как работает клон
-//        Squad newSq = (Squad) sq.clone();
-//        System.out.println(sq.getMassWarior().get(1).toString());
+//        Squad newSq = (Squad) squadTeam1.clone();
+//        System.out.println(squadTeam1.getMassWarior().get(1).toString());
 //        System.out.println(newSq.getMassWarior().get(1).toString());
 //
 //        BarbarianJulia w= (BarbarianJulia) newSq.getMassWarior().get(1);
 //        w.setName("keakdaed");
 //
-//        System.out.println(sq.getMassWarior().get(1).toString());
+//        System.out.println(squadTeam1.getMassWarior().get(1).toString());
 //        System.out.println(newSq.getMassWarior().get(1).toString());
 //---------------------------------------------------------
     }
@@ -50,8 +50,8 @@ public class Battle {
         System.out.println(dt.getFormattedStartDate());
         while (!Win) {//получили рандомных бойцов
             try {
-                Warrior team1Wr = SquadTeam1.getMassWarior().get(random.nextInt(SquadTeam1.getMassWarior().size()));
-                Warrior team2Wr = SquadTeam2.getMassWarior().get(random.nextInt(SquadTeam2.getMassWarior().size()));
+                Warrior team1Wr = SquadTeam1.getRandomWarior();
+                Warrior team2Wr = SquadTeam2.getRandomWarior();
                 System.out.println("Боец команды " + SquadTeam2.toString() + " атакует! \n Он нанес урона: " + team2Wr.attack());
                 team1Wr.takeDamage(team2Wr.attack());
                 dt.skipTime();
@@ -65,8 +65,8 @@ public class Battle {
                     break;
                 }
 
-                team1Wr = SquadTeam1.getMassWarior().get(random.nextInt(SquadTeam1.getMassWarior().size()));
-                team2Wr = SquadTeam2.getMassWarior().get(random.nextInt(SquadTeam2.getMassWarior().size()));
+                team1Wr = SquadTeam1.getRandomWarior();
+                team2Wr = SquadTeam2.getRandomWarior();
                 System.out.println("Боец команды" + SquadTeam1.toString() + " атакует! \n Он нанес урона: " + team1Wr.attack());
                 team2Wr.takeDamage(team1Wr.attack());
                 dt.skipTime();

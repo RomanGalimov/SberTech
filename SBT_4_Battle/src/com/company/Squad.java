@@ -7,7 +7,7 @@ import java.util.Random;
  * Created by dmitr on 22.11.2016.
  */
 public class Squad implements Cloneable {
-    private String NameSquad;
+    private String nameSquad;
     private ArrayList<Warrior> massWarior;
 
     public ArrayList<Warrior> getMassWarior() {
@@ -19,8 +19,8 @@ public class Squad implements Cloneable {
     }
 
 
-    public Squad(String NameSquad) {
-        this.NameSquad = NameSquad;
+    public Squad(String nameSquad) {
+        this.nameSquad = nameSquad;
     }
 
 
@@ -35,7 +35,6 @@ public class Squad implements Cloneable {
             if (massWarior.get(i).isAlive()) {
                 j++;
             } else {
-                System.out.println("Боец " + massWarior.get(i).toString() + "\n погиб!!!");
                 massWarior.remove(i);
             }
         }
@@ -46,7 +45,7 @@ public class Squad implements Cloneable {
 
     @Override
     public String toString() {
-        return NameSquad;
+        return nameSquad;
     }
 
     @Override
@@ -56,20 +55,13 @@ public class Squad implements Cloneable {
         //создали новый массив с бойцами
         ArrayList<Warrior> br = new ArrayList<>();
 
-        for (int i = 0; i < cloneSq.getMassWarior().size(); i++) {
+        for (int i = 0; i < massWarior.size(); i++) {
             //получили ссылку у клона на бойца, и присвоили ее новому объекту
-            Warrior wr = cloneSq.getMassWarior().get(i);
-
-            if (wr instanceof BarbarianJulia) {
-                BarbarianJulia e = (BarbarianJulia) ((BarbarianJulia) wr).clone();
-                br.add(e);
-            }
-
-            //добавили нового бойца в новый массив...но при этом новый боец содержит ссылку на старого...бред, я запутался.
+            Warrior wr = massWarior.get(i);
+            br.add((Warrior) wr.clone());
         }
         //заменили массив с бойцами (ссылку)
         cloneSq.setMassWarior(br);
-
         return cloneSq;
     }
 }
