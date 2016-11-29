@@ -93,4 +93,7 @@ public class TerminalMethodClass implements Terminal {
             client.setCardClient(null);
         } else throw new NoCardException();
     }
+
+
+
 }

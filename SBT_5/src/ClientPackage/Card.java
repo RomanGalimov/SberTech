@@ -1,5 +1,7 @@
 package ClientPackage;
 
+import java.io.*;
+
 /**
  * Created by dmitr on 28.11.2016.
  */
@@ -53,6 +55,24 @@ public class Card {
 
     public void setMoney(long money) {
         this.money = money;
+    }
+
+    public void setStream(String fileName) throws IOException {
+        DataOutputStream dos=new DataOutputStream(new FileOutputStream(fileName));
+        dos.writeLong(numberCard);
+        dos.writeInt(pin);
+        dos.writeLong(money);
+        dos.writeBoolean(statusBlock);
+        System.out.println("Запись в файл произведена!");
+    }
+
+    public void getStream(String fileName) throws IOException {
+        DataInputStream dis=new DataInputStream(new FileInputStream(fileName));
+        numberCard=dis.readLong();
+        pin=dis.readInt();
+        money=dis.readLong();
+        statusBlock=dis.readBoolean();
+        System.out.println("Значения для карты считаны из файла!");
     }
 
 
