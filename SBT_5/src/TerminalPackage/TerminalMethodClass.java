@@ -17,31 +17,29 @@ public class TerminalMethodClass implements Terminal {
     private static int i = 0;
     private boolean terminalOpen = false;
 
-    public TerminalMethodClass(String FIO) throws DuplicateException {
+    public TerminalMethodClass() throws DuplicateException {
         terminalOpen = false;
-        addClient(FIO);
     }
 
-    public TerminalMethodClass(Client client, int pin) throws PinNotFoundException, InterruptedException {
-        if (checkPin(client, pin)) {
+    public TerminalMethodClass(long numberCard, int pin) throws PinNotFoundException, InterruptedException {
+        if (checkPin(numberCard, pin)) {
             terminalOpen = true;
             System.out.println("Вы получили доступ к терминалу!");
         } else throw new PinNotFoundException();
     }
 
-    public boolean checkPin(Client client, int pin) throws InterruptedException {
-        if (pin == client.getCardClient().getPin()) {
-            terminalOpen = true;
-            return true;
-        } else if (i < 3) {
-            terminalOpen = false;
-            i++;
-            return false;
-        } else if (i == 3) {
-            terminalOpen = false;
-            TimeUnit.SECONDS.sleep(3);
-            return false;
+    public boolean checkPin(long numberCard, int pin) throws InterruptedException {
+        for (Client e : clients) {
+            if (e.getCardClient().getNumberCard()==numberCard & e.getCardClient().getPin()==pin) {
+                terminalOpen=true;
+                return true;
+            }
         }
+        i++;
+        if (i < 3) {
+            TimeUnit.SECONDS.sleep(3);
+        }
+        terminalOpen = false;
         return false;
     }
 
@@ -81,13 +79,15 @@ public class TerminalMethodClass implements Terminal {
     }
 
     @Override
-    public void addClient(String FIO) throws DuplicateException {
+    public Client addClient(String FIO) throws DuplicateException {
         for (Client e : clients) {
             if (FIO.equals(e.getFIO())) {
                 throw new DuplicateException();
             }
         }
-        clients.add(new Client(FIO));
+        Client client=new Client(FIO);
+        clients.add(client);
+        return  client;
     }
 
     @Override
@@ -101,7 +101,8 @@ public class TerminalMethodClass implements Terminal {
     @Override
     public void addCard(Client client, Card card) throws DuplicateException {
         for (Client e : clients) {
-            if (card.getNumberCard() == e.getCardClient().getNumberCard() && client.getCardClient() == null) {
+            if (e.getCardClient() != null ) {
+                if(card.getNumberCard() == e.getCardClient().getNumberCard())
                 throw new DuplicateException();
             }
         }
