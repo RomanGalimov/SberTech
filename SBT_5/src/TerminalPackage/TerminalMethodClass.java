@@ -92,7 +92,7 @@ public class TerminalMethodClass implements Terminal {
     }
 
     @Override
-    public void deleteClient(Client client) throws PinNotFoundException {
+    public void deleteClient() throws PinNotFoundException {
         if (!terminalOpen) {
             throw new PinNotFoundException();
         }
@@ -112,7 +112,7 @@ public class TerminalMethodClass implements Terminal {
     }
 
     @Override
-    public void deleteCard(Client client) throws NoCardException, PinNotFoundException {
+    public void deleteCard() throws NoCardException, PinNotFoundException {
         if (!terminalOpen) {
             throw new PinNotFoundException();
         }

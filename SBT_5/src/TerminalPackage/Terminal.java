@@ -13,7 +13,7 @@ public interface Terminal {
     void addMoney(int money) throws AccountBlockedException, PinNotFoundException;
     void takeMoney(int money) throws NoMoneyNoHoneyException, AccountBlockedException, PinNotFoundException;
     Client addClient(String FIO) throws DuplicateException;
-    void deleteClient(Client client) throws PinNotFoundException;
+    void deleteClient() throws PinNotFoundException;
     void addCard(Client client,Card card) throws DuplicateException;
-    void deleteCard(Client client) throws NoCardException, PinNotFoundException;
+    void deleteCard() throws NoCardException, PinNotFoundException;
 }
