@@ -5,7 +5,7 @@ import java.io.*;
 /**
  * Created by dmitr on 28.11.2016.
  */
-public class Card implements Serializable{
+public class Card implements Serializable {
 
 
     private long numberCard;
@@ -21,7 +21,7 @@ public class Card implements Serializable{
         this.numberCard = numberCard;
         this.pin = pin;
         this.money = 0;
-        this.statusBlock=true;
+        this.statusBlock = true;
     }
 
 
@@ -58,7 +58,7 @@ public class Card implements Serializable{
     }
 
     public void setStream(String fileName) throws IOException {
-        DataOutputStream dos=new DataOutputStream(new FileOutputStream(fileName));
+        DataOutputStream dos = new DataOutputStream(new FileOutputStream(fileName));
         dos.writeLong(numberCard);
         dos.writeInt(pin);
         dos.writeLong(money);
@@ -69,17 +69,17 @@ public class Card implements Serializable{
     }
 
     public void getStream(String fileName) throws IOException {
-        DataInputStream dis=new DataInputStream(new FileInputStream(fileName));
-        numberCard=dis.readLong();
-        pin=dis.readInt();
-        money=dis.readLong();
-        statusBlock=dis.readBoolean();
+        DataInputStream dis = new DataInputStream(new FileInputStream(fileName));
+        numberCard = dis.readLong();
+        pin = dis.readInt();
+        money = dis.readLong();
+        statusBlock = dis.readBoolean();
         System.out.println("Значения для карты считаны из файла!");
         dis.close();
     }
 
     public void setWriter(String nameFile) throws IOException {
-        BufferedWriter bw=new BufferedWriter(new FileWriter(nameFile));
+        BufferedWriter bw = new BufferedWriter(new FileWriter(nameFile));
         bw.write(String.valueOf(numberCard));
         bw.write(pin);
         bw.write(String.valueOf(money));
@@ -88,8 +88,9 @@ public class Card implements Serializable{
         bw.flush();
         bw.close();
     }
+
     public void setReader(String nameFile) throws IOException {
-        BufferedReader br=new BufferedReader(new FileReader(nameFile));
+        BufferedReader br = new BufferedReader(new FileReader(nameFile));
         System.out.println(br);
         br.close();
     }

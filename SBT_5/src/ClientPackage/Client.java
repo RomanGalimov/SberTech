@@ -1,7 +1,6 @@
 package ClientPackage;
 
 
-
 import java.io.*;
 
 /**
@@ -38,26 +37,30 @@ public class Client implements Serializable {
     }
 
     public void setStream(String fileName) throws IOException {
-        DataOutputStream dos=new DataOutputStream(new FileOutputStream(fileName));
+        DataOutputStream dos = new DataOutputStream(new FileOutputStream(fileName));
         dos.writeUTF(FIO);
+        dos.flush();
+        dos.close();
         System.out.println("Запись в файл произведена!");
     }
 
     public void getStream(String fileName) throws IOException {
-        DataInputStream dis=new DataInputStream(new FileInputStream(fileName));
+        DataInputStream dis = new DataInputStream(new FileInputStream(fileName));
         dis.readUTF();
+        dis.close();
         System.out.println("Фамилия считана из файла!");
     }
 
     public void setWriter(String nameFile) throws IOException {
-        BufferedWriter bw=new BufferedWriter(new FileWriter(nameFile));
+        BufferedWriter bw = new BufferedWriter(new FileWriter(nameFile));
         bw.write(FIO);
         System.out.println("Записан в файл!");
         bw.flush();
         bw.close();
     }
+
     public void setReader(String nameFile) throws IOException {
-        BufferedReader br=new BufferedReader(new FileReader(nameFile));
+        BufferedReader br = new BufferedReader(new FileReader(nameFile));
         System.out.println(br);
         br.close();
     }
