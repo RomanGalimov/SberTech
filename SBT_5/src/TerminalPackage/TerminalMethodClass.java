@@ -16,7 +16,7 @@ public class TerminalMethodClass implements Terminal {
     public static ArrayList<Client> clients = new ArrayList<>();
     private static int i = 0;
     private boolean terminalOpen = false;
-
+    Client client=null;
     public TerminalMethodClass() throws DuplicateException {
         terminalOpen = false;
     }
@@ -31,6 +31,7 @@ public class TerminalMethodClass implements Terminal {
     public boolean checkPin(long numberCard, int pin) throws InterruptedException {
         for (Client e : clients) {
             if (e.getCardClient().getNumberCard()==numberCard & e.getCardClient().getPin()==pin) {
+                client=e;
                 terminalOpen=true;
                 return true;
             }
@@ -44,7 +45,7 @@ public class TerminalMethodClass implements Terminal {
     }
 
     @Override
-    public long checkMoney(Client client) throws AccountBlockedException, PinNotFoundException {
+    public long checkMoney() throws AccountBlockedException, PinNotFoundException {
         if (!terminalOpen) {
             throw new PinNotFoundException();
         }
@@ -54,7 +55,7 @@ public class TerminalMethodClass implements Terminal {
     }
 
     @Override
-    public void addMoney(Client client, int money) throws AccountBlockedException, PinNotFoundException {
+    public void addMoney( int money) throws AccountBlockedException, PinNotFoundException {
         if (!terminalOpen) {
             throw new PinNotFoundException();
         }
@@ -67,7 +68,7 @@ public class TerminalMethodClass implements Terminal {
     }
 
     @Override
-    public void takeMoney(Client client, int money) throws NoMoneyNoHoneyException, PinNotFoundException {
+    public void takeMoney( int money) throws NoMoneyNoHoneyException, PinNotFoundException {
         if (!terminalOpen) {
             throw new PinNotFoundException();
         }
