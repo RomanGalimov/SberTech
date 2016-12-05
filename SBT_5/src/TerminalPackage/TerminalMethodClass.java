@@ -16,7 +16,8 @@ public class TerminalMethodClass implements Terminal {
     public static ArrayList<Client> clients = new ArrayList<>();
     private static int i = 0;
     private boolean terminalOpen = false;
-    Client client=null;
+    Client client = null;
+
     public TerminalMethodClass() throws DuplicateException {
         terminalOpen = false;
     }
@@ -30,9 +31,9 @@ public class TerminalMethodClass implements Terminal {
 
     public boolean checkPin(long numberCard, int pin) throws InterruptedException {
         for (Client e : clients) {
-            if (e.getCardClient().getNumberCard()==numberCard & e.getCardClient().getPin()==pin) {
-                client=e;
-                terminalOpen=true;
+            if (e.getCardClient().getNumberCard() == numberCard & e.getCardClient().getPin() == pin) {
+                client = e;
+                terminalOpen = true;
                 return true;
             }
         }
@@ -55,7 +56,7 @@ public class TerminalMethodClass implements Terminal {
     }
 
     @Override
-    public void addMoney( int money) throws AccountBlockedException, PinNotFoundException {
+    public void addMoney(int money) throws AccountBlockedException, PinNotFoundException {
         if (!terminalOpen) {
             throw new PinNotFoundException();
         }
@@ -68,7 +69,7 @@ public class TerminalMethodClass implements Terminal {
     }
 
     @Override
-    public void takeMoney( int money) throws NoMoneyNoHoneyException, PinNotFoundException {
+    public void takeMoney(int money) throws NoMoneyNoHoneyException, PinNotFoundException {
         if (!terminalOpen) {
             throw new PinNotFoundException();
         }
@@ -86,9 +87,9 @@ public class TerminalMethodClass implements Terminal {
                 throw new DuplicateException();
             }
         }
-        Client client=new Client(FIO);
+        Client client = new Client(FIO);
         clients.add(client);
-        return  client;
+        return client;
     }
 
     @Override
@@ -102,13 +103,14 @@ public class TerminalMethodClass implements Terminal {
     @Override
     public void addCard(Client client, Card card) throws DuplicateException {
         for (Client e : clients) {
-            if (e.getCardClient() != null ) {
-                if(card.getNumberCard() == e.getCardClient().getNumberCard())
-                throw new DuplicateException();
+            if (e.getCardClient() != null) {
+                if (card.getNumberCard() == e.getCardClient().getNumberCard())
+                    throw new DuplicateException();
             }
         }
         client.setCardClient(card);
-
+        serialOutFileCard(card);
+        serialOutFileClient(client);
     }
 
     @Override
@@ -121,37 +123,76 @@ public class TerminalMethodClass implements Terminal {
         } else throw new NoCardException();
     }
 
-    public void serialOutFile(Client client) {
+    public void serialOutFileCard(Card card) {
+        FileOutputStream fos = null;
+        ObjectOutputStream oos = null;
         try {
-            FileOutputStream fos = new FileOutputStream("temp.out");
-             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(client);
-            oos.flush();
-            oos.close();
+            fos = new FileOutputStream("card" + card.getNumberCard() + ".bin");
+            oos = new ObjectOutputStream(fos);
+            oos.writeObject(card);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
+            try {
 
+                oos.flush();
+                oos.close();
+                fos.flush();
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }
 
-    public Client serialInFile()
-    {
+    public void serialOutFileClient(Client client) {
+        FileOutputStream fos = null;
+        ObjectOutputStream oos = null;
         try {
-            FileInputStream fis = new FileInputStream("temp.out");
-            ObjectInputStream oin = new ObjectInputStream(fis);
-            return (Client) oin.readObject();
+            fos = new FileOutputStream("client" + client.getFIO() + ".bin");
+            oos = new ObjectOutputStream(fos);
+            oos.writeObject(client);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                oos.flush();
+                oos.close();
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    public Client serialInFile(String nameClient) {
+        FileInputStream fis = null;
+        ObjectInputStream oin = null;
+        try {
+            fis = new FileInputStream("client"+nameClient+".bin");
+            oin = new ObjectInputStream(fis);
+            Client client = (Client) oin.readObject();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                fis.close();
+                oin.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        return null;
+        return client;
     }
 
 
