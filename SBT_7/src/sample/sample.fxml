@@ -27,7 +27,7 @@
          <ComboBox fx:id="comboBoxSquad" prefHeight="39.0" prefWidth="175.0" promptText="Отряд" BorderPane.alignment="CENTER" />
       </left>
       <right>
-         <TextField fx:id="label" prefHeight="25.0" prefWidth="171.0" promptText="Переименовать отряд" BorderPane.alignment="CENTER">
+         <TextField fx:id="field" prefHeight="25.0" prefWidth="171.0" promptText="Переименовать отряд" BorderPane.alignment="CENTER">
             <font>
                <Font size="18.0" />
             </font></TextField>

@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import sbt4package.*;
 
 import java.net.URL;
@@ -32,7 +33,7 @@ public class Controller implements Initializable {
     TextArea battleField;
 
     @FXML
-    Label label;
+    TextField field;
 
     @FXML
     private void buttonAction(ActionEvent event) {
@@ -43,20 +44,20 @@ public class Controller implements Initializable {
         i++;
         if (nameWarrior.equals("Viking")) {
             wr = new Viking(i.toString(), comboBoxSquad.getValue().toString());
-            //squadTeam1.getMassWarior().add(new Viking(i.toString(),comboBoxSquad.getValue().toString()));
         } else if (nameWarrior.equals("BarbarianJulia")) {
             wr = new BarbarianJulia(i.toString(), comboBoxSquad.getValue().toString());
-            //squadTeam1.getMassWarior().add(new BarbarianJulia(i.toString(),comboBoxSquad.getValue().toString()));
         }
         if (nameSquad.equals("Team_1") & wr != null) {
-            if(label.getText()!=null){
-                squadTeam1.setNameSquad(label.getText());
+            if (field.getText() != null) {
+                squadTeam1.setNameSquad(field.getText());
+                field.clear();
             }
             squadTeam1.getMassWarior().add(wr);
             battleField.setText("\n" + squadTeam1.getMassWarior().toString());
         } else if (nameSquad.equals("Team_2") & wr != null) {
-            if(label.getText()!=null){
-                squadTeam2.setNameSquad(label.getText());
+            if (field.getText() != null) {
+                squadTeam2.setNameSquad(field.getText());
+                field.clear();
             }
             squadTeam2.getMassWarior().add(wr);
             battleField.setText("\n" + squadTeam2.getMassWarior().toString());
@@ -74,6 +75,7 @@ public class Controller implements Initializable {
     }
 
     public void buttonGO(ActionEvent event) {
-        battleField.setText(String.valueOf(Battle.methodBattle(squadTeam1, squadTeam2)));
+        battleField.setText(String.valueOf(Battle.battleInterface.methodBattle(squadTeam1,squadTeam2)));
     }
+
 }

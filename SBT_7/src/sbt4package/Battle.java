@@ -5,12 +5,11 @@ import java.util.Random;
 
 public class Battle {
     public static ArrayList<String > listBattle=new ArrayList<>();
-    public static ArrayList<String> methodBattle( Squad SquadTeam1, Squad SquadTeam2) {
+//    public static   ArrayList<String> methodBattle(Squad SquadTeam1, Squad SquadTeam2) {
+    public static BattleInterface battleInterface=(SquadTeam1,SquadTeam2)->{
         dateHelper dt = new dateHelper();
         boolean Win = false;
-
-        Random random = new Random();
-        System.out.println(dt.getFormattedStartDate());
+        listBattle.add(dt.getFormattedStartDate());
         while (!Win) {//получили рандомных бойцов
             try {
                 Warrior team1Wr = SquadTeam1.getRandomWarior();
@@ -48,5 +47,5 @@ public class Battle {
             }
         }
         return listBattle;
-    }
+    };
 }

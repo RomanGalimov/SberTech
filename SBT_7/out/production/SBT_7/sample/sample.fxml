@@ -27,7 +27,7 @@
          <ComboBox fx:id="comboBoxSquad" prefHeight="39.0" prefWidth="175.0" promptText="Отряд" BorderPane.alignment="CENTER" />
       </left>
       <right>
-         <TextField prefHeight="25.0" prefWidth="171.0" promptText="Переименовать" BorderPane.alignment="CENTER">
+         <TextField fx:id="field" prefHeight="25.0" prefWidth="171.0" promptText="Переименовать отряд" BorderPane.alignment="CENTER">
             <font>
                <Font size="18.0" />
             </font></TextField>
@@ -35,7 +35,7 @@
 
     </BorderPane>
    <TextArea fx:id="battleField" prefHeight="270.0" prefWidth="549.0" promptText="Поле боя!" GridPane.rowIndex="5" />
-   <Button  onAction="#buttonGO" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="549.0" text="БОЙ!" GridPane.rowIndex="6" />
+   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#buttonGO" prefHeight="39.0" prefWidth="549.0" text="БОЙ!" GridPane.rowIndex="6" />
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
