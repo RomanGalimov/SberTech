@@ -56,11 +56,12 @@ public class Squad implements Cloneable {
         //создали новый массив с бойцами
         ArrayList<Warrior> br = new ArrayList<>();
 
-        for (int i = 0; i < massWarior.size(); i++) {
-            //получили ссылку у клона на бойца, и присвоили ее новому объекту
-            Warrior wr = massWarior.get(i);
-            br.add((Warrior) wr.clone());
-        }
+        massWarior.forEach((Warrior wr) -> br.add((Warrior) wr.clone()));
+//        for (int i = 0; i < massWarior.size(); i++) {
+//            //получили ссылку у клона на бойца, и присвоили ее новому объекту
+//            Warrior wr = massWarior.get(i);
+//            br.add((Warrior) wr.clone());
+//        }
         //заменили массив с бойцами (ссылку)
         cloneSq.setMassWarior(br);
         return cloneSq;

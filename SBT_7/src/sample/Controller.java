@@ -48,14 +48,14 @@ public class Controller implements Initializable {
             wr = new BarbarianJulia(i.toString(), comboBoxSquad.getValue().toString());
         }
         if (nameSquad.equals("Team_1") & wr != null) {
-            if (field.getText() != null) {
+            if (!field.getText().equals("")) {
                 squadTeam1.setNameSquad(field.getText());
                 field.clear();
             }
             squadTeam1.getMassWarior().add(wr);
             battleField.setText("\n" + squadTeam1.getMassWarior().toString());
         } else if (nameSquad.equals("Team_2") & wr != null) {
-            if (field.getText() != null) {
+            if (!field.getText().equals("")) {
                 squadTeam2.setNameSquad(field.getText());
                 field.clear();
             }
@@ -75,7 +75,7 @@ public class Controller implements Initializable {
     }
 
     public void buttonGO(ActionEvent event) {
-        battleField.setText(String.valueOf(Battle.battleInterface.methodBattle(squadTeam1,squadTeam2)));
+        battleField.setText(String.valueOf(Battle.battleInterface.methodBattle(squadTeam1, squadTeam2)));
     }
 
 }

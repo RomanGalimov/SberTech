@@ -7,5 +7,5 @@ import java.util.ArrayList;
  */
 @FunctionalInterface
 public interface BattleInterface {
-    ArrayList<String> methodBattle(Squad squad1,Squad squad2);
+    ArrayList<String> methodBattle(Squad squad1, Squad squad2);
 }

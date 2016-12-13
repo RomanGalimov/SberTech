@@ -14,31 +14,31 @@ public class Battle {
             try {
                 Warrior team1Wr = SquadTeam1.getRandomWarior();
                 Warrior team2Wr = SquadTeam2.getRandomWarior();
-                listBattle.add("\n Боец команды " + SquadTeam2.toString() + " атакует! \n Он нанес урона: " + team2Wr.attack());
+                listBattle.add("\n Боец команды " + SquadTeam2.getNameSquad() + " атакует! \n Он нанес урона: " + team2Wr.attack());
                 team1Wr.takeDamage(team2Wr.attack());
                 dt.skipTime();
                 dt.getFormattedDiff();
 
 
                 if (SquadTeam1.hasAliveWariors()) {
-                    listBattle.add("\n В команде " + SquadTeam1.toString() + " еще есть живые бойцы!");
+                    listBattle.add("\n В команде " + SquadTeam1.getNameSquad() + " еще есть живые бойцы!");
                 } else {
-                    listBattle.add("\n В команде " + SquadTeam1.toString() + " живых бойцов нет!\n Бой длился:" + dt.getFormattedDiff() + " минут!");
+                    listBattle.add("\n В команде " + SquadTeam1.getNameSquad() + " живых бойцов нет!\n Бой длился:" + dt.getFormattedDiff() + " минут!");
                     break;
                 }
 
                 team1Wr = SquadTeam1.getRandomWarior();
                 team2Wr = SquadTeam2.getRandomWarior();
-                listBattle.add("\n Боец команды" + SquadTeam1.toString() + " атакует! \n Он нанес урона: " + team1Wr.attack());
+                listBattle.add("\n Боец команды" + SquadTeam1.getNameSquad() + " атакует! \n Он нанес урона: " + team1Wr.attack());
                 team2Wr.takeDamage(team1Wr.attack());
                 dt.skipTime();
                 dt.getFormattedDiff();
 
                 if (SquadTeam2.hasAliveWariors()) {
-                    listBattle.add("\n В команде " + SquadTeam2.toString() + " еще есть живые бойцы!");
+                    listBattle.add("\n В команде " + SquadTeam2.getNameSquad() + " еще есть живые бойцы!");
                     Win = false;
                 } else {
-                    listBattle.add("\n В команде " + SquadTeam2.toString() + " живых бойцов нет!\n Бой длился:" + dt.getFormattedDiff() + " минут!");
+                    listBattle.add("\n В команде " + SquadTeam2.getNameSquad() + " живых бойцов нет!\n Бой длился:" + dt.getFormattedDiff() + " минут!");
 
                     Win = true;
                 }
