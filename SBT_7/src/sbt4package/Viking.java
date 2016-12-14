@@ -6,7 +6,6 @@ package sbt4package;
 public class Viking implements Warrior, Cloneable {
     private int damage = 10;
     private int health = 70;
-    private boolean life = true;
     private String squadName;
     private String name;
 
@@ -34,13 +33,15 @@ public class Viking implements Warrior, Cloneable {
         health -= Damage;
         if (health <= 0) {
             Battle.listBattle.add("Боец " + name + "\n погиб!!!");
-            life = false;
         }
     }
 
     @Override
     public boolean isAlive() {
-        return life;
+        if (health <= 0) {
+            return false;
+        } else
+            return true;
     }
 
     @Override
@@ -58,10 +59,9 @@ public class Viking implements Warrior, Cloneable {
     }
 
     @Override
-    public Object clone() {
+    public Viking clone() {
         try {
-            Viking e = (Viking) super.clone();
-            return e;
+            return (Viking) super.clone();
         } catch (CloneNotSupportedException ex) {
             throw new InternalError();
         }

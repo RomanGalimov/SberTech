@@ -1,6 +1,7 @@
 package sbt4package;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 /**
@@ -9,14 +10,14 @@ import java.util.Random;
 public class Squad implements Cloneable {
 
     private String nameSquad;
-    private ArrayList<Warrior> massWarior = new ArrayList<>();
+    private ArrayList<Warrior> massWarrior = new ArrayList<>();
 
-    public ArrayList<Warrior> getMassWarior() {
-        return massWarior;
+    public void addMassWarrior(Warrior wr) {
+        massWarrior.add(wr);
     }
 
-    public void setMassWarior(ArrayList massWarior) {
-        this.massWarior = massWarior;
+    public void setMassWarrior(ArrayList massWarrior) {
+        this.massWarrior = massWarrior;
     }
 
 
@@ -25,23 +26,33 @@ public class Squad implements Cloneable {
     }
 
 
-    public Warrior getRandomWarior() {
-        Random r = new Random();
-        return massWarior.get(r.nextInt(massWarior.size()));
+    public Warrior getRandomWarrior() {
+        if (hasAliveWarriors()) {
+            Random r = new Random();
+            return massWarrior.get(r.nextInt(massWarrior.size()));
+        }
+        return null;
     }
 
-    public boolean hasAliveWariors() {
-        int j = 0;
-        for (int i = 0; i < massWarior.size(); i++) {
-            if (massWarior.get(i).isAlive()) {
-                j++;
-            } else {
-                massWarior.remove(i);
-            }
+    public boolean hasAliveWarriors() {
+
+        Iterator<Warrior> iterator = massWarrior.iterator();
+        int i = 0;
+        while (iterator.hasNext()) {
+            if (!iterator.next().isAlive()) {
+                iterator.remove();
+            } else i++;
         }
-        if (j != 0) {
-            return true;
-        } else return false;
+//        int j = 0;
+//        for (int i = 0; i < massWarrior.size(); i++) {
+//            if (massWarrior.get(i).isAlive()) {
+//                j++;
+//            } else {
+//                massWarrior.remove(i);
+//            }
+//        }
+        return i != 0;
+     //   return massWarrior.stream().allMatch(Warrior::isAlive);
     }
 
     @Override
@@ -51,19 +62,10 @@ public class Squad implements Cloneable {
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
-        //скопировали объект
         Squad cloneSq = (Squad) super.clone();
-        //создали новый массив с бойцами
         ArrayList<Warrior> br = new ArrayList<>();
-
-        massWarior.forEach((Warrior wr) -> br.add((Warrior) wr.clone()));
-//        for (int i = 0; i < massWarior.size(); i++) {
-//            //получили ссылку у клона на бойца, и присвоили ее новому объекту
-//            Warrior wr = massWarior.get(i);
-//            br.add((Warrior) wr.clone());
-//        }
-        //заменили массив с бойцами (ссылку)
-        cloneSq.setMassWarior(br);
+        massWarrior.forEach((Warrior wr) -> br.add((Warrior) wr.clone()));
+        cloneSq.setMassWarrior(br);
         return cloneSq;
     }
 
