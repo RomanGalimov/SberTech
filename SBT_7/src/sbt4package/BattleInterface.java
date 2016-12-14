@@ -6,6 +6,6 @@ import java.util.ArrayList;
  * Created by dmitr on 14.12.2016.
  */
 @FunctionalInterface
-public interface BattleInterface {
+public interface BattleInterface { //удалить
     ArrayList<String> methodBattle(Squad squad1, Squad squad2);
 }

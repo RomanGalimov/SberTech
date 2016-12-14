@@ -3,10 +3,10 @@ package sbt4package;
 /**
  * Created by dmitr on 22.11.2016.
  */
-public class Viking implements Warrior, Cloneable {
+public class Viking implements Warrior, Cloneable { //почему бы не вынести общую логику бойцов в абстрактный класс?
     private int damage = 10;
     private int health = 70;
-    private boolean life = true;
+    private boolean life = true; //не понятен смысл этого поля. мы и так можем судить о жизни персонажа по уровню его здоровья
     private String squadName;
     private String name;
 
@@ -58,9 +58,9 @@ public class Viking implements Warrior, Cloneable {
     }
 
     @Override
-    public Object clone() {
+    public Object clone() { //мы хотим получить Viking, а не Object
         try {
-            Viking e = (Viking) super.clone();
+            Viking e = (Viking) super.clone(); //переменная лишняя. сразу вернуть объект
             return e;
         } catch (CloneNotSupportedException ex) {
             throw new InternalError();

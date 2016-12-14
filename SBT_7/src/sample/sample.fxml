@@ -21,13 +21,13 @@
          <ComboBox fx:id="comboBoxWarrior" prefHeight="39.0" prefWidth="203.0" promptText="Тип бойца" BorderPane.alignment="CENTER" />
       </center>
       <bottom>
-         <Button mnemonicParsing="false" onAction="#buttonAction" prefHeight="39.0" prefWidth="206.0" text="Добавить" BorderPane.alignment="CENTER" />
+         <Button mnemonicParsing="false" onAction="#buttonAction" prefHeight="39.0" prefWidth="206.0" text="Добавить" BorderPane.alignment="CENTER" /> <!--на этой кнопке при наведении прыгает надпись-->
       </bottom>
       <left>
          <ComboBox fx:id="comboBoxSquad" prefHeight="39.0" prefWidth="175.0" promptText="Отряд" BorderPane.alignment="CENTER" />
       </left>
       <right>
-         <TextField fx:id="field" prefHeight="25.0" prefWidth="171.0" promptText="Переименовать отряд" BorderPane.alignment="CENTER">
+         <TextField fx:id="field" prefHeight="25.0" prefWidth="171.0" promptText="Переименовать отряд" BorderPane.alignment="CENTER"> <!--в итоге видно только "Переименовать о"-->
             <font>
                <Font size="18.0" />
             </font></TextField>

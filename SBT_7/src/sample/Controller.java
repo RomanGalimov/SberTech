@@ -17,11 +17,11 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
-    Squad squadTeam1 = new Squad("Barbarian team");
+    Squad squadTeam1 = new Squad("Barbarian team"); //private
     Squad squadTeam2 = new Squad("Julia team");
     ObservableList<String> listWarrior = FXCollections.observableArrayList("Viking", "BarbarianJulia");
     ObservableList<String> listSquad = FXCollections.observableArrayList("Team_1", "Team_2");
-    Integer i = 0;
+    Integer i = 0; //имя поля ни о чем не говорит +сомнительно, что нужен именно Integer
 
     @FXML
     private ComboBox<String> comboBoxWarrior;
@@ -36,25 +36,25 @@ public class Controller implements Initializable {
     TextField field;
 
     @FXML
-    private void buttonAction(ActionEvent event) {
+    private void buttonAction(ActionEvent event) { //имя метода ни о чем не говорит
         Warrior wr = null;
         battleField.clear();
-        String nameWarrior = comboBoxWarrior.getValue().toString();
+        String nameWarrior = comboBoxWarrior.getValue().toString(); //в списках уже лежат строки. toString() не нужен. если сразу нажать на кнопку, падает NullPointerException и никак не обрабатывается
         String nameSquad = comboBoxSquad.getValue().toString();
         i++;
         if (nameWarrior.equals("Viking")) {
-            wr = new Viking(i.toString(), comboBoxSquad.getValue().toString());
+            wr = new Viking(i.toString(), comboBoxSquad.getValue().toString()); //после создания бойца его команда не меняется.
         } else if (nameWarrior.equals("BarbarianJulia")) {
-            wr = new BarbarianJulia(i.toString(), comboBoxSquad.getValue().toString());
+            wr = new BarbarianJulia(i.toString(), comboBoxSquad.getValue().toString()); //зачем оставлять возможность сохранения null в переменной?
         }
         if (nameSquad.equals("Team_1") & wr != null) {
             if (!field.getText().equals("")) {
-                squadTeam1.setNameSquad(field.getText());
+                squadTeam1.setNameSquad(field.getText()); //при добавлении на экран все равно выводится имя из comboBoxSquad
                 field.clear();
             }
             squadTeam1.getMassWarior().add(wr);
             battleField.setText("\n" + squadTeam1.getMassWarior().toString());
-        } else if (nameSquad.equals("Team_2") & wr != null) {
+        } else if (nameSquad.equals("Team_2") & wr != null) { //одно и тоже 2 раза. вынести в отдельный метод
             if (!field.getText().equals("")) {
                 squadTeam2.setNameSquad(field.getText());
                 field.clear();
@@ -64,7 +64,7 @@ public class Controller implements Initializable {
         }
 
 
-        // battleField.setText("\n"+squadTeam1.getMassWarior().toString());
+        // battleField.setText("\n"+squadTeam1.getMassWarior().toString()); мертвого кода не должно быть в репозитории
 
     }
 

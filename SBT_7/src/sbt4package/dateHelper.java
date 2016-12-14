@@ -29,6 +29,6 @@ public class dateHelper {
     }
 
     public String getFormattedDiff() {
-        return String.valueOf(longTimeBattle);
+        return String.valueOf(longTimeBattle); //предполагалось вывести нормальную длительность в днях, часах и минутах
     }
 }
