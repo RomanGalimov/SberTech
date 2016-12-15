@@ -127,10 +127,21 @@ public class Card implements Serializable {
 
     public void setReader(String nameFile) {
         BufferedReader br = null;
+        StreamTokenizer st = null;
         try {
             br = new BufferedReader(new FileReader(nameFile));
-            System.out.println(br);
+            st = new StreamTokenizer(br);
+            //System.out.println(br);
+            String str = "";
+            while (st.nextToken() != StreamTokenizer.TT_EOF) {
+                str += st.sval;
+                str += " ";
+            }
+            System.out.println(str);
+
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         } finally {
             {
