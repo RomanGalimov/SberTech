@@ -43,14 +43,6 @@ public class Squad implements Cloneable {
                 iterator.remove();
             } else i++;
         }
-//        int j = 0;
-//        for (int i = 0; i < massWarrior.size(); i++) {
-//            if (massWarrior.get(i).isAlive()) {
-//                j++;
-//            } else {
-//                massWarrior.remove(i);
-//            }
-//        }
         return i != 0;
      //   return massWarrior.stream().allMatch(Warrior::isAlive);
     }
@@ -61,7 +53,7 @@ public class Squad implements Cloneable {
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
+    protected Squad clone() throws CloneNotSupportedException {
         Squad cloneSq = (Squad) super.clone();
         ArrayList<Warrior> br = new ArrayList<>();
         massWarrior.forEach((Warrior wr) -> br.add((Warrior) wr.clone()));

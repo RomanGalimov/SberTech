@@ -2,7 +2,7 @@ package sbt4package;
 
 import java.util.Calendar;
 
-import static sbt4package.Battle.listBattle;
+import static sbt4package.Battle.log;
 
 /**
  * Created by dmitr on 22.11.2016.
@@ -26,11 +26,13 @@ public class dateHelper {
     public void skipTime() {
         cal.add(cal.MINUTE, 45);
         longTimeBattle += 45;
-        listBattle.add("Раунд №" + i + "\n Начало в: " + cal.getTime());
+        log("Раунд №" + i + "\n Начало в: " + cal.getTime());
         i++;
     }
 
     public String getFormattedDiff() {
-        return String.valueOf(longTimeBattle);
+        long hour=longTimeBattle/60;
+        long minute=longTimeBattle-(hour*60);
+        return String.valueOf(+hour+ ":"+minute);
     }
 }

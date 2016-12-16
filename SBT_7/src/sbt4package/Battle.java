@@ -15,7 +15,7 @@ public class Battle {
             if (SquadTeam1.hasAliveWarriors()) {
                 log("\n В команде " + SquadTeam1.getNameSquad() + " еще есть живые бойцы!");
             } else {
-                log("\n В команде " + SquadTeam1.getNameSquad() + " живых бойцов нет!\n Бой длился:" + dt.getFormattedDiff() + " минут!");
+                log("\n В команде " + SquadTeam1.getNameSquad() + " живых бойцов нет!\n Бой длился:" + dt.getFormattedDiff() + "!");
                 break;
             }
 
@@ -25,7 +25,7 @@ public class Battle {
                 log("\n В команде " + SquadTeam2.getNameSquad() + " еще есть живые бойцы!");
                 Win = false;
             } else {
-                log("\n В команде " + SquadTeam2.getNameSquad() + " живых бойцов нет!\n Бой длился:" + dt.getFormattedDiff() + " минут!");
+                log("\n В команде " + SquadTeam2.getNameSquad() + " живых бойцов нет!\n Бой длился:" + dt.getFormattedDiff() + "!");
                 Win = true;
             }
         }
@@ -43,6 +43,6 @@ public class Battle {
         log("\n Боец команды " + SquadTeam2.getNameSquad() + " атакует! \n Он нанес урона: " + team2Wr.attack());
         team1Wr.takeDamage(team2Wr.attack());
         dt.skipTime();
-        dt.getFormattedDiff();
+        //dt.getFormattedDiff();
     }
 }

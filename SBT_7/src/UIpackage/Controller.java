@@ -45,9 +45,9 @@ public class Controller implements Initializable {
             battleField.setText("Выберите отряд/тип бойца!");
             return;
         } else if (nameWarrior.equals("Viking")) {
-            wr = new Viking(nameI.toString(), nameSquad);
+            wr = new Viking(nameI.toString());
         } else if (nameWarrior.equals("BarbarianJulia")) {
-            wr = new BarbarianJulia(nameI.toString(), nameSquad);
+            wr = new BarbarianJulia(nameI.toString());
         }
         nameI++;
         if (nameSquad.equals("Team_1") & wr != null) {

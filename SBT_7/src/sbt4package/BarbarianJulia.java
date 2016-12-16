@@ -7,7 +7,6 @@ public class BarbarianJulia implements Warrior, Cloneable {
 
     private int Damage = 5;
     private int Health = 50;
-    private String squadName;
     private String name;
 
     public String getName() {
@@ -19,8 +18,7 @@ public class BarbarianJulia implements Warrior, Cloneable {
         this.name = name;
     }
 
-    public BarbarianJulia(String name, String sqName) {
-        this.squadName = sqName;
+    public BarbarianJulia(String name) {
         this.name = name;
     }
 
@@ -45,18 +43,10 @@ public class BarbarianJulia implements Warrior, Cloneable {
             return true;
     }
 
-    @Override
-    public void setSquadName(String Name) {
-        squadName = Name;
-    }
-
-    public String getSquadName() {
-        return squadName;
-    }
 
     @Override
     public String toString() {
-        return name + "\n Класс: ВарЮльвар \n Название отряда:" + squadName;
+        return name + "\n Класс: ВарЮльвар";
     }
 
     @Override

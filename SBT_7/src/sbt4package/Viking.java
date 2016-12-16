@@ -6,7 +6,6 @@ package sbt4package;
 public class Viking implements Warrior, Cloneable {
     private int damage = 10;
     private int health = 70;
-    private String squadName;
     private String name;
 
     public String getName() {
@@ -18,8 +17,7 @@ public class Viking implements Warrior, Cloneable {
         this.name = name;
     }
 
-    public Viking(String name, String sqName) {
-        this.squadName = sqName;
+    public Viking(String name) {
         this.name = name;
     }
 
@@ -44,18 +42,10 @@ public class Viking implements Warrior, Cloneable {
             return true;
     }
 
-    @Override
-    public void setSquadName(String name) {
-        squadName = name;
-    }
-
-    public String getSquadName() {
-        return squadName;
-    }
 
     @Override
     public String toString() {
-        return name + "\n Класс: Викинг \n Название отряда:" + squadName;
+        return name + "\n Класс: Викинг";
     }
 
     @Override
