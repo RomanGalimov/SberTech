@@ -12,11 +12,11 @@ public class Squad implements Cloneable {
     private String nameSquad;
     private ArrayList<Warrior> massWarrior = new ArrayList<>();
 
-    public void addMassWarrior(Warrior wr) {
+    public void addMassWarrior(Warrior wr) { //почему mass?
         massWarrior.add(wr);
     }
 
-    public void setMassWarrior(ArrayList massWarrior) {
+    public void setMassWarrior(ArrayList massWarrior) { //этод метод позволяет всем как угодно менять бойцов в отряде - это нарушение инкапсуляции
         this.massWarrior = massWarrior;
     }
 
@@ -37,7 +37,7 @@ public class Squad implements Cloneable {
     public boolean hasAliveWarriors() {
 
         Iterator<Warrior> iterator = massWarrior.iterator();
-        int i = 0;
+        int i = 0; //тут в любом случае не нужен счетчик, даже если не использовать лямбду
         while (iterator.hasNext()) {
             if (!iterator.next().isAlive()) {
                 iterator.remove();
@@ -67,6 +67,6 @@ public class Squad implements Cloneable {
     }
 
     public void setNameSquad(String nameSquad) {
-        this.nameSquad = nameSquad;
+        this.nameSquad = nameSquad; //может, тут что-то еще надо сделать?
     }
 }

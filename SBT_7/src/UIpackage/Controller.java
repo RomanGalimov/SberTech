@@ -21,6 +21,7 @@ public class Controller implements Initializable {
     private ObservableList<String> listWarrior = FXCollections.observableArrayList("Viking", "BarbarianJulia");
     private ObservableList<String> listSquad = FXCollections.observableArrayList("Team_1", "Team_2");
     Integer nameI = 1;//при создании нового бойца присваиваю ему номер заместо имени, для этого нужен метод toString
+    // имя лучше не стало. и почему package local?
 
     @FXML
     private ComboBox<String> comboBoxWarrior;
@@ -32,7 +33,7 @@ public class Controller implements Initializable {
     TextArea battleField;
 
     @FXML
-    TextField field;
+    TextField field; //неинформативное имя
 
     @FXML
     private void buttonAddWarrior(ActionEvent event) {
@@ -45,16 +46,23 @@ public class Controller implements Initializable {
             battleField.setText("Выберите отряд/тип бойца!");
             return;
         } else if (nameWarrior.equals("Viking")) {
-            wr = new Viking(nameI.toString());
+            wr = new Viking(nameI.toString()); //тут был комментарий, что у вас после создания бойца его команда не меняется, несмотря на значение поля field. ничего не изменилось.
         } else if (nameWarrior.equals("BarbarianJulia")) {
-            wr = new BarbarianJulia(nameI.toString());
+            wr = new BarbarianJulia(nameI.toString()); //по-прежнему может остаться null...
         }
         nameI++;
         if (nameSquad.equals("Team_1") & wr != null) {
             addWarrior(squadTeam1, wr);
-        } else if (nameSquad.equals("Team_2") & wr != null) {
-            addWarrior(squadTeam2, wr);
+        } else if (nameSquad.equals("Team_2") & wr != null) { //что за мания писать else if? разве тут возможен третий вариант? нет - если отряд не первый, то точно второй.
+            addWarrior(squadTeam2, wr); //все равно копипаста, хоть теперь и из 1 строки
         }
+/*      вот что я хотел увидеть:
+        Squad squadToAdd = squadTeam1;
+        if(nameSquad.equals("Team_2")) {
+            squadToAdd = squadTeam2;
+        }
+        addWarrior(squadToAdd, wr);
+*/
     }
 
     public void addWarrior(Squad squad, Warrior wr) {

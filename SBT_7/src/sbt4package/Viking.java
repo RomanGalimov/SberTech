@@ -36,7 +36,7 @@ public class Viking implements Warrior, Cloneable {
 
     @Override
     public boolean isAlive() {
-        if (health <= 0) {
+        if (health <= 0) { //мы хотим вернуть результат логического выражения, и мы можем сразу это сделать, не возвращая отдельно true/false. просто return health <= 0;
             return false;
         } else
             return true;
@@ -53,7 +53,7 @@ public class Viking implements Warrior, Cloneable {
         try {
             return (Viking) super.clone();
         } catch (CloneNotSupportedException ex) {
-            throw new InternalError();
+            throw new InternalError(); //ошибки должны как-то прояснять ситуацию. а что это за ошибка?
         }
     }
 }

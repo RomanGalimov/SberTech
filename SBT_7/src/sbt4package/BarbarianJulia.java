@@ -5,7 +5,7 @@ package sbt4package;
  */
 public class BarbarianJulia implements Warrior, Cloneable {
 
-    private int Damage = 5;
+    private int Damage = 5; //с маленькой буквы
     private int Health = 50;
     private String name;
 
