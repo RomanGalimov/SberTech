@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIpackage.Controller">
 
     <BorderPane>
       <top>
@@ -21,7 +21,7 @@
          <ComboBox fx:id="comboBoxWarrior" prefHeight="39.0" prefWidth="203.0" promptText="Тип бойца" BorderPane.alignment="CENTER" />
       </center>
       <bottom>
-         <Button mnemonicParsing="false" onAction="#buttonAction" prefHeight="39.0" prefWidth="206.0" text="Добавить" BorderPane.alignment="CENTER" />
+         <Button alignment="CENTER" mnemonicParsing="false" onAction="#buttonAddWarrior" prefHeight="39.0" prefWidth="267.0" text="Добавить" BorderPane.alignment="CENTER" />
       </bottom>
       <left>
          <ComboBox fx:id="comboBoxSquad" prefHeight="39.0" prefWidth="175.0" promptText="Отряд" BorderPane.alignment="CENTER" />
@@ -29,7 +29,7 @@
       <right>
          <TextField fx:id="field" prefHeight="25.0" prefWidth="171.0" promptText="Переименовать отряд" BorderPane.alignment="CENTER">
             <font>
-               <Font size="18.0" />
+               <Font size="14.0" />
             </font></TextField>
       </right>
 

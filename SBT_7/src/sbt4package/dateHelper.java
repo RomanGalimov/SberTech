@@ -2,33 +2,37 @@ package sbt4package;
 
 import java.util.Calendar;
 
+import static sbt4package.Battle.log;
+
 /**
  * Created by dmitr on 22.11.2016.
  */
 public class dateHelper {
 
     Calendar cal = Calendar.getInstance();
-    String dStart = cal.getTime().toString();
+    Calendar dStart = cal;
     private int i = 2;
-    private int longTimeBattle = 0;
+    int longTimeBattle = 0;
 
-    public dateHelper() {
+    dateHelper() {
         cal.add(cal.YEAR, -1500);
 
     }
 
     public String getFormattedStartDate() {
-        return "Начало боя: " + dStart + " Раунд 1!";
+        return "Начало боя: " + dStart.getTime().toString() + " Раунд 1!";
     }
 
     public void skipTime() {
         cal.add(cal.MINUTE, 45);
         longTimeBattle += 45;
-        Battle.listBattle.add("Раунд №" + i + "\n Начало в: " + cal.getTime());
+        log("Раунд №" + i + "\n Начало в: " + cal.getTime());
         i++;
     }
 
     public String getFormattedDiff() {
-        return String.valueOf(longTimeBattle); //предполагалось вывести нормальную длительность в днях, часах и минутах
+        long hour=longTimeBattle/60;
+        long minute=longTimeBattle-(hour*60);
+        return String.valueOf(+hour+ ":"+minute);
     }
 }

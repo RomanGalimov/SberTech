@@ -10,50 +10,41 @@ import java.util.Random;
 public class Squad implements Cloneable {
 
     private String nameSquad;
-    private ArrayList<Warrior> massWarior = new ArrayList<>();
+    private ArrayList<Warrior> massWarrior = new ArrayList<>();
 
-    //-----------------------------------------------
-    // нарушение инкапсуляции. это эквивалентно объявлению massWarior как public.
-    // получить бойца мы должны смочь только одним способом - getRandomWarior().
-    // в крайнем случае можно оставить метод добавления бойца в отряд, а еще лучше не давать и такой возможности, сразу принимая список в конструкторе.
-    public ArrayList<Warrior> getMassWarior() {
-        return massWarior;
+    public void addMassWarrior(Warrior wr) {
+        massWarrior.add(wr);
     }
 
-    public void setMassWarior(ArrayList massWarior) {
-        this.massWarior = massWarior;
+    public void setMassWarrior(ArrayList massWarrior) {
+        this.massWarrior = massWarrior;
     }
-    //-----------------------------------------------
+
 
     public Squad(String nameSquad) {
         this.nameSquad = nameSquad;
     }
 
 
-    public Warrior getRandomWarior() {
-        Random r = new Random();
-        return massWarior.get(r.nextInt(massWarior.size()));
+    public Warrior getRandomWarrior() {
+        if (hasAliveWarriors()) {
+            Random r = new Random();
+            return massWarrior.get(r.nextInt(massWarrior.size()));
+        }
+        return null;
     }
 
-    /*
-     *   1. Зачем использовать счетчик? Достаточно одного мертвого, чтобы вернуть false
-     *   2. Не стоит, проходя циклом по коллекции, удалять из него элементы. Это может привести к непредсказуемым последствиям в зависимости от конкретной коллекции. Для безопасной реализации нужно использовать итератор.
-     *   3. В местах, где ожидается результат условия, не нужно дополнительно ни проверять его на true/false, не возвращать true/false. В данном случае сразу return j != 0;
-     *   4. Ты искал места, где можно использовать функции... Этот метод является отличным примером.
-     *   Все елементы коллекции должны удовлетворять условию - isAlive должен быть истиной. Переводя на java - return massWarior.stream().allMatch(Warrior::isAlive);
-     */
-    public boolean hasAliveWariors() {
-        int j = 0;
-        for (int i = 0; i < massWarior.size(); i++) {
-            if (massWarior.get(i).isAlive()) {
-                j++;
-            } else {
-                massWarior.remove(i);
-            }
+    public boolean hasAliveWarriors() {
+
+        Iterator<Warrior> iterator = massWarrior.iterator();
+        int i = 0;
+        while (iterator.hasNext()) {
+            if (!iterator.next().isAlive()) {
+                iterator.remove();
+            } else i++;
         }
-        if (j != 0) {
-            return true;
-        } else return false;
+        return i != 0;
+     //   return massWarrior.stream().allMatch(Warrior::isAlive);
     }
 
     @Override
@@ -62,21 +53,11 @@ public class Squad implements Cloneable {
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
-        //скопировали объект
-        // к чему эти комментарии? разве без них не понятно, что происходит в этом методе??
+    protected Squad clone() throws CloneNotSupportedException {
         Squad cloneSq = (Squad) super.clone();
-        //создали новый массив с бойцами
         ArrayList<Warrior> br = new ArrayList<>();
-
-        massWarior.forEach((Warrior wr) -> br.add((Warrior) wr.clone()));
-//        for (int i = 0; i < massWarior.size(); i++) { старый код нужно было удалить
-//            //получили ссылку у клона на бойца, и присвоили ее новому объекту
-//            Warrior wr = massWarior.get(i);
-//            br.add((Warrior) wr.clone());
-//        }
-        //заменили массив с бойцами (ссылку)
-        cloneSq.setMassWarior(br);
+        massWarrior.forEach((Warrior wr) -> br.add((Warrior) wr.clone()));
+        cloneSq.setMassWarrior(br);
         return cloneSq;
     }
 
@@ -86,6 +67,6 @@ public class Squad implements Cloneable {
     }
 
     public void setNameSquad(String nameSquad) {
-        this.nameSquad = nameSquad; //нужно проставить имя бойцам
+        this.nameSquad = nameSquad;
     }
 }

@@ -3,11 +3,9 @@ package sbt4package;
 /**
  * Created by dmitr on 22.11.2016.
  */
-public class Viking implements Warrior, Cloneable { //почему бы не вынести общую логику бойцов в абстрактный класс?
+public class Viking implements Warrior, Cloneable {
     private int damage = 10;
     private int health = 70;
-    private boolean life = true; //не понятен смысл этого поля. мы и так можем судить о жизни персонажа по уровню его здоровья
-    private String squadName;
     private String name;
 
     public String getName() {
@@ -19,8 +17,7 @@ public class Viking implements Warrior, Cloneable { //почему бы не в�
         this.name = name;
     }
 
-    public Viking(String name, String sqName) {
-        this.squadName = sqName;
+    public Viking(String name) {
         this.name = name;
     }
 
@@ -34,34 +31,27 @@ public class Viking implements Warrior, Cloneable { //почему бы не в�
         health -= Damage;
         if (health <= 0) {
             Battle.listBattle.add("Боец " + name + "\n погиб!!!");
-            life = false;
         }
     }
 
     @Override
     public boolean isAlive() {
-        return life;
+        if (health <= 0) {
+            return false;
+        } else
+            return true;
     }
 
-    @Override
-    public void setSquadName(String name) {
-        squadName = name;
-    }
-
-    public String getSquadName() {
-        return squadName;
-    }
 
     @Override
     public String toString() {
-        return name + "\n Класс: Викинг \n Название отряда:" + squadName;
+        return name + "\n Класс: Викинг";
     }
 
     @Override
-    public Object clone() { //мы хотим получить Viking, а не Object
+    public Viking clone() {
         try {
-            Viking e = (Viking) super.clone(); //переменная лишняя. сразу вернуть объект
-            return e;
+            return (Viking) super.clone();
         } catch (CloneNotSupportedException ex) {
             throw new InternalError();
         }

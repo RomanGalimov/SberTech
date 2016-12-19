@@ -7,8 +7,6 @@ public class BarbarianJulia implements Warrior, Cloneable {
 
     private int Damage = 5;
     private int Health = 50;
-    private boolean life = true;
-    private String squadName;
     private String name;
 
     public String getName() {
@@ -20,8 +18,7 @@ public class BarbarianJulia implements Warrior, Cloneable {
         this.name = name;
     }
 
-    public BarbarianJulia(String name, String sqName) {
-        this.squadName = sqName;
+    public BarbarianJulia(String name) {
         this.name = name;
     }
 
@@ -35,34 +32,27 @@ public class BarbarianJulia implements Warrior, Cloneable {
         Health -= Damage;
         if (Health <= 0) {
             Battle.listBattle.add("Боец " + name + "\n погиб!!!");
-            life = false;
         }
     }
 
     @Override
     public boolean isAlive() {
-        return life;
+        if (Health <= 0) {
+            return false;
+        } else
+            return true;
     }
 
-    @Override
-    public void setSquadName(String Name) {
-        squadName = Name;
-    }
-
-    public String getSquadName() {
-        return squadName;
-    }
 
     @Override
     public String toString() {
-        return name + "\n Класс: ВарЮльвар \n Название отряда:" + squadName;
+        return name + "\n Класс: ВарЮльвар";
     }
 
     @Override
-    public Object clone() {
+    public BarbarianJulia clone() {
         try {
-            BarbarianJulia e = (BarbarianJulia) super.clone();
-            return e;
+            return (BarbarianJulia) super.clone();
         } catch (CloneNotSupportedException ex) {
             throw new InternalError();
         }

@@ -38,8 +38,8 @@ public class Client implements Serializable {
         this.cardClient = cardClient;
     }
 
-    public void setStream(String fileName)  {
-        DataOutputStream dos =null;
+    public void setStream(String fileName) {
+        DataOutputStream dos = null;
         try {
             dos = new DataOutputStream(new FileOutputStream(fileName));
             dos.writeUTF(FIO);
@@ -48,8 +48,7 @@ public class Client implements Serializable {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             try {
                 dos.flush();
                 dos.close();
@@ -59,8 +58,8 @@ public class Client implements Serializable {
         }
     }
 
-    public void getStream(String fileName)  {
-        DataInputStream dis=null;
+    public void getStream(String fileName) {
+        DataInputStream dis = null;
         try {
             dis = new DataInputStream(new FileInputStream(fileName));
             dis.readUTF();
@@ -69,8 +68,7 @@ public class Client implements Serializable {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             try {
                 dis.close();
             } catch (IOException e) {
@@ -79,16 +77,15 @@ public class Client implements Serializable {
         }
     }
 
-    public void setWriter(String nameFile)  {
-        BufferedWriter bw =null;
+    public void setWriter(String nameFile) {
+        BufferedWriter bw = null;
         try {
             bw = new BufferedWriter(new FileWriter(nameFile));
             bw.write(FIO);
             System.out.println("Записан в файл!");
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             try {
                 bw.flush();
                 bw.close();
@@ -100,13 +97,22 @@ public class Client implements Serializable {
 
     public void setReader(String nameFile) {
         BufferedReader br = null;
+        StreamTokenizer st = null;
         try {
             br = new BufferedReader(new FileReader(nameFile));
-            System.out.println(br);
+            st = new StreamTokenizer(br);
+            String s = "";
+            while (st.nextToken() != StreamTokenizer.TT_EOF) {
+                s += st.sval;
+                s += " ";
+            }
+            System.out.println(s);
+            //System.out.println(br);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
-        finally {
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
             try {
                 br.close();
             } catch (IOException e) {

@@ -8,7 +8,6 @@ public interface Warrior {
     int attack();
     void takeDamage(int Damage);
     boolean isAlive();
-    void setSquadName(String Name);
     Object clone();
 
 
